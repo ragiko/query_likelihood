@@ -30,15 +30,15 @@ require 'kconv' #文字変換
 # dir	:読み込むテキストの格納されているディレクトリ(絶対パス推奨)
 # in_f	:入力１：読み込むクエリの格納されているディレクトリ(絶対パス推奨)スラッシュも入れる
 mcb = MeCab::Tagger.new("--node-format=%m,%f[0]\\n --eos-format=")
-dir = "ntcir11_spoken_target_document/" # 検索の対象
-topic_dir ="lda/ntcir11_spoken_target_document/" # 検索の対象のLDA
+dir = "hasegawa/ntcir11_spoken_target_document/" # 検索の対象
+topic_dir ="hasegawa/lda/ntcir11_spoken_target_document/" # 検索の対象のLDA
 
 if ARGV.size != 5
   puts "Syntax Error!!"
   exit(-1)
 else
   in_f = ARGV[0]
-  in_f_two = ARGV[1]
+  in_f_two = "hasegawa/" + ARGV[1]
   out_f = ARGV[4]
   Dir::mkdir(out_f)
   # 拡張クエリの比率を決めるalpha（大きいほど拡張クエリへの依存が高い
