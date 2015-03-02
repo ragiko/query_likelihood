@@ -25,25 +25,31 @@ require 'csv'
 require 'nkf'
 require 'kconv' #文字変換
 
-## 設定項目
 # mcb	:MeCabオブジェクト生成　形式：”形態素,品詞”
 # dir	:読み込むテキストの格納されているディレクトリ(絶対パス推奨)
 # in_f	:入力１：読み込むクエリの格納されているディレクトリ(絶対パス推奨)スラッシュも入れる
 mcb = MeCab::Tagger.new("--node-format=%m,%f[0]\\n --eos-format=")
-dir = "hasegawa/ntcir11_spoken_target_document/" # 検索の対象
-topic_dir ="hasegawa/lda/ntcir11_spoken_target_document/" # 検索の対象のLDA
 
-if ARGV.size != 5
+# ///////////////////////////////
+# 設定項目
+# ///////////////////////////////
+dir = "hasegawa/ntcir11_spoken_target_document/"  # 検索の対象
+topic_dir ="hasegawa/lda/ntcir11_spoken_target_document/" # 検索の対象のLDA
+# TODO: expand_query_dir中にquerylistが入っていること
+expand_query_dir = "hasegawa/expand_query/ntcir11_spoken_tf10/"
+expand_query_lda_dir = "hasegawa/lda/model/ntcir11_spoken_tf10/"
+
+if ARGV.size != 3
   puts "Syntax Error!!"
   exit(-1)
 else
-  in_f = ARGV[0]
-  in_f_two = "hasegawa/" + ARGV[1]
-  out_f = ARGV[4]
+  in_f = expand_query_dir
+  in_f_two = expand_query_lda_dir
+  out_f = ARGV[2]
   Dir::mkdir(out_f)
   # 拡張クエリの比率を決めるalpha（大きいほど拡張クエリへの依存が高い
-  paramator_u = ARGV[2].to_f
-  paramator_ramda = ARGV[3].to_f
+  paramator_u = ARGV[0].to_f
+  paramator_ramda = ARGV[1].to_f
   n_best = 1
 end
 
