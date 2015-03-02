@@ -1,3 +1,4 @@
+# query_likelihood
 
 ## 長谷川さんのサーバの場所
 * IPアドレス; **.**.**.73
@@ -46,3 +47,4 @@ vi query_yuudo.rb
 # (comand) (入力ファイル: WEB拡張クエリのPATH, WEB拡張クエリのLDAのパス) (出力ファイル: [出力先は/home/hasegawa/query-yuudo/result_rank以下])
 ./Queryyuudo.sh expand_query/ntcir11_spoken_tf10/ lda/model/ntcir11_spoken_tf10/ ntcir11_spoken_tf10
 ```
+
